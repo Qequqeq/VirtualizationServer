@@ -37,7 +37,7 @@ var publicIP string
 func main() {
 	// Database initialization remains the same
 	var err error
-	db, err = sql.Open("sqlite3", "/root/database/vm.db")
+	db, err = sql.Open("sqlite3", "/root/VirtualizationServer/database/vm.db")
 	if err != nil {
 		log.Fatal("Database connection error:", err)
 	}
@@ -257,7 +257,7 @@ func vmHandler(w http.ResponseWriter, r *http.Request) {
 
 // CreateVM remains similar but with better error handling
 func createVM(username string) (int, error) {
-    scriptPath := "/root/vm-api/scripts/vmctl.sh"
+    scriptPath := "/root/VirtualizationServer/vm-api/scripts/vmctl.sh"
     cmd := exec.Command("/bin/bash", scriptPath, "create", username)
     output, err := cmd.CombinedOutput()
     if err != nil {
@@ -272,7 +272,7 @@ func createVM(username string) (int, error) {
 
     // tuna-port
     time.Sleep(3 * time.Second)
-    tunaPort, err := getTunaPort("/root/database/tuna_ports")
+    tunaPort, err := getTunaPort("/root/VirtualizationServer/database/tuna_ports")
     if err != nil {
         log.Printf("Tuna port error: %v | VM Script output: %s", err, string(tunaPort))
         return 0, fmt.Errorf("tuna port error: %v", err)
@@ -283,7 +283,7 @@ func createVM(username string) (int, error) {
 
 //get tuna port
 func getTunaPort(filePath string) (int, error) {
-	cmd := exec.Command("python3", "/root/vm-api/parser.py")
+	cmd := exec.Command("python3", "/root/VirtualizationServer/vm-api/parser.py")
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		return 0, fmt.Errorf("bad parsing, return %s", output)
