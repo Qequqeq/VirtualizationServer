@@ -37,7 +37,7 @@ var publicIP string
 func main() {
 	// Database initialization remains the same
 	var err error
-	db, err = sql.Open("sqlite3", "/root/database/vm.db")
+	db, err = sql.Open("sqlite3", "/root/VirtualizationServer/database/vm.db")
 	if err != nil {
 		log.Fatal("Database connection error:", err)
 	}
@@ -59,8 +59,7 @@ func main() {
 	// Simplified routing with explicit method checks
 	http.HandleFunc("/register", registerHandler)
 	http.HandleFunc("/login", loginHandler)
-	http.HandleFunc("/vm", authMiddleware(vmHandler)) // Middleware wrapped here
-	// http.HandlerFunck("exit", exitHandler)
+	http.HandleFunc("/vm", authMiddleware(vmHandler))
 	http.HandleFunc("/wtf", wtfHandler)
 
 	log.Println("Server starting on :8080...")
@@ -72,17 +71,17 @@ func wtfHandler(w http.ResponseWriter, r *http.Request) {
     examples := map[string]interface{}{
         "register_example": map[string]string{
             "method":  "POST",
-            "command": `curl -X POST -H "Content-Type: application/json" -d '{"username":"example","password":"example"}' https://alp-virtualka.ru.tuna.am/register`,
+            "command": `curl -X POST -H "Content-Type: application/json" -d '{"username":"example","password":"example"}' https://<yourdomain>.ru.tuna.am/register`,
             "comment": "Registration",
         },
         "login_example": map[string]string{
             "method":  "POST",
-            "command": `curl -X POST -H "Content-Type: application/json" -d '{"username":"example","password":"example"}' https://alp-virtualka.ru.tuna.am/login`,
+            "command": `curl -X POST -H "Content-Type: application/json" -d '{"username":"example","password":"example"}' https://<yourdomain>.ru.tuna.am/login`,
             "comment": "Authorization",
         },
         "get_vm_example": map[string]string{
             "method":  "GET",
-            "command": `curl -H "Authorization: Bearer 5b907122-af7a-4105-a95c-86efcfb8cbf6" "https://alp-virtualka.ru.tuna.am/vm?username=example"`,
+            "command": `curl -H "Authorization: Bearer 5b907122-af7a-4105-a95c-86efcfb8cbf6" "https://<yourdomain>.ru.tuna.am/vm?username=example"`,
             "comment": "Get VM data (need to authorization)",
         },
         "ssh_connect": map[string]string{
@@ -204,46 +203,6 @@ func vmHandler(w http.ResponseWriter, r *http.Request) {
 	    http.Error(w, "You are here", http.StatusBadRequest)
 	    return
     }
-//    _, err = db.Exec(
-//	    "UPDATE users SET vm_port = ? WHERE username = ?",
-//	    port,
-//	    username,
-//    )
-//    if err != nil {
-//	    log.Printf("DB updating failed: %v", err)
-//	    http.Error(w, "Database...", http.StatusInternalServerError)
-//	    return
-//    }
-//    var port sql.NullInt64  // NullInt64
-//    err := db.QueryRow("SELECT vm_port FROM users WHERE username = ?", username).Scan(&port)
-
-//    if errors.Is(err, sql.ErrNoRows) {
-        // Make new VM
-//        newPort, err := createVM(username)
-//        if err != nil {
-//            log.Printf("VM creation failed: %v", err)
-//            http.Error(w, "VM creation error", http.StatusInternalServerError)
-//            return
-//        }
-
-        // Updating 
-//        _, err = db.Exec(
-//            "UPDATE users SET vm_port = ? WHERE username = ?", 
-//            newPort, 
-//            username,
-//        )
-//        if err != nil {
-//            log.Printf("Database update failed: %v", err)
-//            http.Error(w, "Server error", http.StatusInternalServerError)
-//            return
-//        }
-
-//        port = sql.NullInt64{Int64: int64(newPort), Valid: true}
-//   } else if err != nil {
-//       log.Printf("Database error: %v", err)
-//        http.Error(w, "Server error", http.StatusInternalServerError)
-//        return
-//    }
 
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(VMInfo{
@@ -257,7 +216,7 @@ func vmHandler(w http.ResponseWriter, r *http.Request) {
 
 // CreateVM remains similar but with better error handling
 func createVM(username string) (int, error) {
-    scriptPath := "/root/vm-api/scripts/vmctl.sh"
+    scriptPath := "/root/VirtualizationServer/vm-api/scripts/vmctl.sh"
     cmd := exec.Command("/bin/bash", scriptPath, "create", username)
     output, err := cmd.CombinedOutput()
     if err != nil {
@@ -265,14 +224,10 @@ func createVM(username string) (int, error) {
 	    return 0, nil
     }
     log.Printf("output: %s", output)
-//    if err != nil {
-//	log.Printf("bad vmctl.sh: %v, out_parser: %s", err, string(output))
-//        return 0, fmt.Errorf("script failed: %v, output: %s", err, string(output))
-//    }
 
     // tuna-port
     time.Sleep(3 * time.Second)
-    tunaPort, err := getTunaPort("/root/database/tuna_ports")
+    tunaPort, err := getTunaPort("/root/VirtualizationServer/database/tuna_ports")
     if err != nil {
         log.Printf("Tuna port error: %v | VM Script output: %s", err, string(tunaPort))
         return 0, fmt.Errorf("tuna port error: %v", err)
@@ -283,7 +238,7 @@ func createVM(username string) (int, error) {
 
 //get tuna port
 func getTunaPort(filePath string) (int, error) {
-	cmd := exec.Command("python3", "/root/vm-api/parser.py")
+	cmd := exec.Command("python3", "/root/VirtualizationServer/vm-api/parser.py")
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		return 0, fmt.Errorf("bad parsing, return %s", output)

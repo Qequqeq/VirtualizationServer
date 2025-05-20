@@ -1,11 +1,11 @@
 
 #!/bin/bash
 
-BASE_IMAGE="/root/image/alpine_base.qcow2"
-VM_DIR="/root/image/vms"
+BASE_IMAGE="/root/VirtualizationServer/image/alpine_base.qcow2"
+VM_DIR="/root/VirtualizationServer/image/vms"
 SSH_PORT_START=10001
-ID_FILE="/root/database/last_id"
-USER_FILE="/root/database/users"
+ID_FILE="/root/VirtualizationServer/database/last_id"
+USER_FILE="/root/VirtualizationServer/database/users"
 
 is_port_avaliable(){
 	local port=$1
