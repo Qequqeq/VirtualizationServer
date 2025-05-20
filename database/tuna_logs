@@ -1,0 +1,35 @@
+
+[36mINFO[0m[14:04:01] POST /register – 409 Conflict                
+[36mINFO[0m[14:16:24] GET /wtf – 200 OK                            
+[36mINFO[0m[14:16:57] GET /vm – 200 OK                             
+[31mERRO[0m[18:59:17] GET https://api.tuna.am/v1/internal/cli/tunnels/589915 request failed: Get "https://api.tuna.am/v1/internal/cli/tunnels/589915": unexpected EOF 
+[36mINFO[0m[20:25:53] Bye                                          
+[36mINFO[0m[09:25:09] Welcome to Tuna                              
+[36mINFO[0m[09:25:09] > New version available: 0.24.0 -> 0.24.2    
+[36mINFO[0m[09:25:09] > Update instructions: https://tuna.am/docs/guides/update?os=linux 
+[36mINFO[0m[09:25:09] Account: Алексей Погосян (Paid till 08.06.2025) 
+[36mINFO[0m[09:25:09] Web Interface: http://127.0.0.1:4040         
+[36mINFO[0m[09:25:10] Forwarding https://alp-virtualka.ru.tuna.am -> 127.0.0.1:8080 
+[36mINFO[0m[09:40:43] GET /wtf – 200 OK                            
+[36mINFO[0m[09:41:30] POST /register – 201 Created                 
+[36mINFO[0m[09:42:18] POST /login – 200 OK                         
+[36mINFO[0m[09:42:44] GET /vm – 200 OK                             
+[36mINFO[0m[12:09:53] POST /login – 200 OK                         
+[36mINFO[0m[12:10:13] GET /vm – 200 OK                             
+[36mINFO[0m[14:53:07] POST /login – 200 OK                         
+[36mINFO[0m[14:53:59] GET /vm – 200 OK                             
+[36mINFO[0m[14:57:25] Bye                                          
+[36mINFO[0m[03:01:47] Welcome to Tuna                              
+[31mERRO[0m[03:01:47] GET https://api.tuna.am/v1/internal/cli/settings request failed: Get "https://api.tuna.am/v1/internal/cli/settings": dial tcp: lookup api.tuna.am on 192.168.251.21:53: dial udp 192.168.251.21:53: connect: network is unreachable 
+[31mERRO[0m[03:01:48] GET https://api.tuna.am/v1/internal/cli/settings request failed: Get "https://api.tuna.am/v1/internal/cli/settings": dial tcp: lookup api.tuna.am on 192.168.251.21:53: dial udp 192.168.251.21:53: connect: network is unreachable 
+[31mERRO[0m[03:01:50] GET https://api.tuna.am/v1/internal/cli/settings request failed: Get "https://api.tuna.am/v1/internal/cli/settings": dial tcp: lookup api.tuna.am on 192.168.251.21:53: dial udp 192.168.251.21:53: connect: network is unreachable 
+[31mERRO[0m[03:01:50] GET https://api.tuna.am/v1/internal/cli request failed: Get "https://api.tuna.am/v1/internal/cli": dial tcp: lookup api.tuna.am on 192.168.251.21:53: dial udp 192.168.251.21:53: connect: network is unreachable 
+[31mERRO[0m[03:01:51] GET https://api.tuna.am/v1/internal/cli request failed: Get "https://api.tuna.am/v1/internal/cli": dial tcp: lookup api.tuna.am on 192.168.251.21:53: dial udp 192.168.251.21:53: connect: network is unreachable 
+[31mERRO[0m[03:01:53] GET https://api.tuna.am/v1/internal/cli request failed: Get "https://api.tuna.am/v1/internal/cli": dial tcp: lookup api.tuna.am on 192.168.251.21:53: dial udp 192.168.251.21:53: connect: network is unreachable 
+[31mFATA[0m[03:01:53] Get "https://api.tuna.am/v1/internal/cli": GET https://api.tuna.am/v1/internal/cli giving up after 3 attempt(s): Get "https://api.tuna.am/v1/internal/cli": dial tcp: lookup api.tuna.am on 192.168.251.21:53: dial udp 192.168.251.21:53: connect: network is unreachable 
+[36mINFO[0m[21:23:56] Welcome to Tuna                              
+[36mINFO[0m[21:23:57] > New version available: 0.24.0 -> 0.24.2    
+[36mINFO[0m[21:23:57] > Update instructions: https://tuna.am/docs/guides/update?os=linux 
+[36mINFO[0m[21:23:57] Account: Алексей Погосян (Paid till 08.06.2025) 
+[36mINFO[0m[21:23:57] Web Interface: http://127.0.0.1:4040         
+[36mINFO[0m[21:23:57] Forwarding https://alp-virtualka.ru.tuna.am -> 127.0.0.1:8080 
