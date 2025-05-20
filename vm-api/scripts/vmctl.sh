@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 BASE_IMAGE="/root/VirtualizationServer/image/alpine_base.qcow2"
