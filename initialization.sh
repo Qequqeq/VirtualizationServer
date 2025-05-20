@@ -1,8 +1,19 @@
 #!/bin/bash
-REPO_DIR=$(pwd)
 
-# Обновление путей в скриптах
-find . -type f -exec sed -i "s|/root/VirtualizationServer|$REPO_DIR|g" {} +
+if [ -z "$1" ]; then
+  echo "Error: Please write your domain"
+  echo "Example: ./initialization.sh your_domain"
+  exit 1
+fi
 
-# Создание конфигурации для Go-кода
-echo "VIRT_SERVER_ROOT=$REPO_DIR" > .env
+TARGET_SCRIPT="/root/VirtualizationServer/vm-api/scripts/start_tuna.sh"
+
+
+sed -i "s/<yourdomain>/$1/g" "$TARGET_SCRIPT"
+
+if grep -q "$1" "$TARGET_SCRIPT"; then
+  echo "Domain changed to: $1"
+else
+  echo "Something went wrong!"
+  exit 1
+fi
