@@ -17,3 +17,4 @@ else
   echo "Something went wrong!"
   exit 1
 fi
+chmod 777 vm-api/scripts/*
