@@ -1,7 +1,7 @@
 #!/bin/sh
 start_port(){
 	port=$1
-	tuna tcp $port --log /root/database/tuna_ports >/dev/null 2>&1 &
+	tuna tcp $port --log /root/VirtualizationServer/database/tuna_ports >/dev/null 2>&1 &
 }
 
 
