@@ -92,8 +92,19 @@ tuna config save-token <hereYourToken>
 cd vv-api/ && go build -o <filename>
 ```
 
-Теперь настроим выполнение регулярных скриптов, используя планировщик cron. Выполниете
+Теперь настроим выполнение регулярных скриптов, используя планировщик cron. Выполните
 ```bash
 crontab -e
+```
+Допишите строчки 
+```bash
+@reboot time sleep 5 && cd /root/VirtualizationServer/scripts/ && ./start_tuna.sh
+*/59 * * * * cd /root/VirtualizationServer/scripts/ && ./check_qemu/sh
+*/59 * * * * cd /root/VirtualizationServer/scripts/ && ./clear_ports.sh
+```
+выйдите и перезапустите систему. После этого запустите сервис.
+```bash
+cd VirtualizationServer/vm-api
+./<filename>
 ```
 
