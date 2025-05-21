@@ -65,6 +65,12 @@ git clone https://github.com/Qequqeq/VirtualizationServer
 cd VirtualizationServer/
 git lfs pull
 ```
+
+Если по каким то причинам lfs не работает, воспользуйтесь 
+```bash
+./if_git_not_work
+```
+
 Для того, чтобы вы могли скачать все необходимые пакеты, настройте пакетный менеджер apk.
 ```bash
 vim /etc/apk/repositories
@@ -89,7 +95,7 @@ tuna config save-token <hereYourToken>
 
 Скомпилируйте исходный код, воспользовавшись командой
 ```bash
-cd vv-api/ && go build -o <filename>
+cd vm-api/ && go build -o <filename>
 ```
 
 Теперь настроим выполнение регулярных скриптов, используя планировщик cron. Выполните
