@@ -18,7 +18,7 @@
 #### 2.1.2. Войдите от root пользователя. Пароль не требуется, просто введите root и нажммите Enter
 #### 2.1.3. Установите базовую систему:
    ```bash
-   sudo setup-alpine
+   setup-alpine
 ```
 Далее приведено руководство по базовой настройке системы.На экране Вы будете постепенно видеть опции для настройки, ниже приведены наиболее простые и естественные действия. Конечно, Вы можете настроить систему и каким-то другим образом.
 Там, где ввод -- пустая строка, система выбирает вариант по умолчанию. Это соотвествует вводу Enter в списке ниже.
@@ -98,9 +98,9 @@ crontab -e
 ```
 Допишите строчки 
 ```bash
-@reboot time sleep 5 && cd /root/VirtualizationServer/scripts/ && ./start_tuna.sh
-*/59 * * * * cd /root/VirtualizationServer/scripts/ && ./check_qemu/sh
-*/59 * * * * cd /root/VirtualizationServer/scripts/ && ./clear_ports.sh
+@reboot time sleep 5 && cd /root/VirtualizationServer/vm-api/scripts/ && ./start_tuna.sh
+0 */4 * * * cd /root/VirtualizationServer/vm-api/scripts/ && ./check_qemu/sh
+0 */4 * * * cd /root/VirtualizationServer/vm-api/scripts/ && ./clear_ports.sh
 ```
 выйдите и перезапустите систему. После этого запустите сервис.
 ```bash
