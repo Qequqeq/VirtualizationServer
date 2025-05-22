@@ -59,7 +59,7 @@ create_vm(){
         return 1
 	}
     echo $SSH_PORT
-    /root/vm-api/scripts/start_port.sh start $SSH_PORT
+    /root/VirtualizationServer/vm-api/scripts/start_port.sh start $SSH_PORT
 }
 
 case "$1" in
