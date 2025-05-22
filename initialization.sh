@@ -16,8 +16,7 @@ check_success() {
 echo "=== Virtualization Server Setup ==="
 
 echo -n "Adding community repository... "
-grep -q 'http://dl-cdn.alpinelinux.org/alpine/v3.21/community' /etc/apk/repositories || \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/repositories
+echo "http://dl-cdn.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/repositories
 check_success "Failed to add repository" "Repository added"
 
 echo -n "Installing required packages... "
