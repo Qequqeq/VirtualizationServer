@@ -55,6 +55,7 @@ echo -n "Configuring cron jobs... "
 (crontab -l 2>/dev/null; echo "0 */4 * * * cd /root/VirtualizationServer/vm-api/scripts/ && ./check_qemu.sh") | crontab -
 (crontab -l 2>/dev/null; echo "0 */4 * * * cd /root/VirtualizationServer/vm-api/scripts/ && ./clear_ports.sh") | crontab -
 check_success "Cron configuration failed" "Cron jobs configured"
+mkdir /root/VirtualizationServer/image/vms
 
 echo "===================================="
 echo "Setup completed successfully!"
