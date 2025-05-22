@@ -41,6 +41,7 @@
 * В выводе с доступными дисками выберите диск, на который хотите установить систему.
 * sys
 * y
+* 
 Если Вы устанавливаете ОС на физический стенд, выполните команду
 ```bash
 reboot
@@ -56,61 +57,46 @@ poweroff
 Выполните команды для установки необходимых пакетов и загрузки репозитория.
 ```bash
 apk update && apk add git bash curl
-wget https://github.com/git-lfs/git-lfs/releases/download/v3.6.1/git-lfs-linux-amd64-v3.6.1.tar.gz
-tar -xvf git-lfs-linux-amd64-v3.6.1.tar.gz
-rm git-lfs-linux-amd64-v3.6.1.tar.gz
-cd git-lfs-3.6.1/ && ./install.sh
-cd
 git clone https://github.com/Qequqeq/VirtualizationServer
 cd VirtualizationServer/
-git lfs pull
+./downloadBase.sh
 ```
 
-Если по каким то причинам lfs не работает, воспользуйтесь 
-```bash
-./if_git_not_work.sh
-```
-
-Для того, чтобы вы могли скачать все необходимые пакеты, настройте пакетный менеджер apk.
-```bash
-vim /etc/apk/repositories
-```
-Уберите комментарий перед репозиторием, оканчивающимся на /community
-Установите пакеты, которые используются в проекте командой
-```bash
-cat installed_packages.txt | xargs apk add
-```
 ### 2.4 Настройка сервиса Tuna
-Перейдите на [официальный сайт](https://tuna.am/) и зарегистрируйтесь на сайте, купите подписку и зайдите в свой профиль. Зарезирвируйте домен в меню Домены. Выполните команды, чтобы привязать устройство к Tuna
-```bash
-curl -sSLf https://get.tuna.am | sh
-tuna config save-token <hereYourToken>
-```
+Перейдите на [официальный сайт](https://tuna.am/) и зарегистрируйтесь на сайте, купите подписку и зайдите в свой профиль. 
+
+Зарезирвируйте домен в меню Домены. Запомните токен, который Вам выдали в меню Токен и имя домена.
 ### 2.5 Финальная настройки
 Выпоните команду 
 ```bash
-./initialization.sh <yourDomain>
-```
-Для изменения домена на Ваш.
-
-Скомпилируйте исходный код, воспользовавшись командой
-```bash
-cd vm-api/ && go build -o <filename>
+./initialization.sh
 ```
 
-Теперь настроим выполнение регулярных скриптов, используя планировщик cron. Выполните
-```bash
-crontab -e
-```
-Допишите строчки 
-```bash
-@reboot time sleep 5 && cd /root/VirtualizationServer/vm-api/scripts/ && ./start_tuna.sh
-0 */4 * * * cd /root/VirtualizationServer/vm-api/scripts/ && ./check_qemu/sh
-0 */4 * * * cd /root/VirtualizationServer/vm-api/scripts/ && ./clear_ports.sh
-```
-выйдите и перезапустите систему. После этого запустите сервис.
+После ее завершения перезапустите систему. После этого запустите сервис.
 ```bash
 cd VirtualizationServer/vm-api
 ./<filename>
 ```
-
+## 3. Пример использования
+### Для получения справки
+```bash
+curl https://<ВашДомен>.ru.tuna.am/wtf
+```
+### Для Регистрации пользователя (имя пользователя test)
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"username":"test","password":"secret"}' https://<ВашДомен>.ru.tuna.am/register`
+``` 
+### Для логина в системе (имя пользователя test)
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"username":"test","password":"secret"}' https://<ВашДомен>.ru.tuna.am/login
+``` 
+### Для получения виртуальной машины (имя пользователя test)
+```bash
+curl -H "Authorization: Bearer <ВашТокен>" "https://<ВашДомен>.ru.tuna.am/vm?username=test"
+```
+### Для подключения в виртуальной машине
+```bash
+ssh root@ru.tuna.am -p <Вашпорт>
+```
+## Пожалуйста, используйте poweroff для завершения работы на виртуальной машине после подлючения к ней по ssh.
+## После запроса на Вм программа попросит Вас немного подождать. Пожалуйста, действительно подождите это время.
