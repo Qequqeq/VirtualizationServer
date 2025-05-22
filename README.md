@@ -75,7 +75,7 @@ cd VirtualizationServer/
 После ее завершения перезапустите систему. После этого запустите сервис.
 ```bash
 cd VirtualizationServer/vm-api
-./<filename>
+./run_to_start
 ```
 ---
 ## 3. Пример использования
