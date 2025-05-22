@@ -55,7 +55,7 @@ poweroff
 ### 2.3 Подготовка системы к работе
 Выполните команды для установки необходимых пакетов и загрузки репозитория.
 ```bash
-apk update && apk add git vim bash
+apk update && apk add git bash curl
 wget https://github.com/git-lfs/git-lfs/releases/download/v3.6.1/git-lfs-linux-amd64-v3.6.1.tar.gz
 tar -xvf git-lfs-linux-amd64-v3.6.1.tar.gz
 rm git-lfs-linux-amd64-v3.6.1.tar.gz
